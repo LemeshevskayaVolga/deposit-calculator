@@ -1,0 +1,32 @@
+@startuml
+title Классы проекта deposit-calculator
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+class Main {
+  + main(args : String[]) : void
+}
+class DepositCalculator {
+  + calculateSimple(d : Deposit) : double
+  + calculateCompound(d : Deposit) : double
+  + calculateTotal(d : Deposit) : double
+  + calculateInterest(d : Deposit) : double
+  + buildReport(d : Deposit) : String
+}
+class Deposit {
+  - principal : double
+  - annualRate : double
+  - years : int
+  - capitalization : boolean
+  + Deposit(principal, annualRate, years, capitalization)
+  + getPrincipal() : double
+  + getAnnualRate() : double
+  + getYears() : int
+  + isCapitalization() : boolean
+}
+class DepositCalculatorTest <<JUnit 5>>
+Main ..> DepositCalculator : <<create>>
+Main ..> Deposit : <<create>>
+DepositCalculator ..> Deposit : <<use>>
+DepositCalculatorTest ..> DepositCalculator
+DepositCalculatorTest ..> Deposit
+@enduml

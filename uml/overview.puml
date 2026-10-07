@@ -1,0 +1,24 @@
+@startuml
+title Общая схема лабораторной работы
+skinparam shadowing false
+rectangle "Java-код" as J
+rectangle "JUnit 5" as U
+rectangle "Apache Ant" as A
+rectangle "Apache Maven" as M
+rectangle "Gradle\n(расширение)" as G
+rectangle "CI\n(расширение)" as C
+rectangle "JAR / Reports" as R
+J --> U
+J --> A
+J --> M
+J --> G
+U --> A
+U --> M
+U --> G
+A --> R
+M --> R
+G --> R
+A --> C
+M --> C
+G --> C
+@enduml

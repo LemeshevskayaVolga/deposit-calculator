@@ -1,0 +1,48 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'by.student'
+version = '1.0.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+    testImplementation(
+        'org.junit.jupiter:junit-jupiter:5.14.4'
+    )
+}
+
+application {
+    mainClass = 'by.student.deposit.Main'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+    }
+
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'by.student.deposit.Main'
+        )
+    }
+}

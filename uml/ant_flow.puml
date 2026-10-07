@@ -1,0 +1,19 @@
+@startuml
+title Сценарий сборки Apache Ant
+skinparam shadowing false
+start
+:ant clean all;
+:clean;
+:init;
+:compile;
+:compile-tests;
+:test (junitlauncher);
+if (Все тесты успешны?) then (да)
+  :report (junitreport);
+  :jar;
+  :BUILD SUCCESSFUL;
+else (нет)
+  :BUILD FAILED;
+endif
+stop
+@enduml

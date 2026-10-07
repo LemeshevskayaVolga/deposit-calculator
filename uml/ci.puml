@@ -1,0 +1,17 @@
+@startuml
+title Build tool внутри CI
+skinparam shadowing false
+actor Developer
+rectangle Git
+rectangle "CI Runner" as R
+rectangle Maven
+rectangle "JUnit / Surefire" as S
+rectangle "JAR + Reports" as A
+Developer --> Git : push
+Git --> R : webhook
+R --> Maven : mvn clean verify
+Maven --> S : test
+S --> Maven : result
+Maven --> A : package/report
+A --> R : artifacts
+@enduml

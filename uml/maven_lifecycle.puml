@@ -1,0 +1,19 @@
+@startuml
+title Maven lifecycle в лабораторной
+skinparam shadowing false
+start
+:mvn clean verify;
+:clean;
+:validate;
+:compile;
+:test-compile;
+:test (Surefire);
+if (Тесты успешны?) then (да)
+  :package (JAR);
+  :verify;
+  :BUILD SUCCESS;
+else (нет)
+  :BUILD FAILURE;
+endif
+stop
+@enduml
